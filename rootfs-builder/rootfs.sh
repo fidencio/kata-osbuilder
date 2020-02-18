@@ -455,9 +455,7 @@ prepare_overlay()
 {
 	pushd "${ROOTFS_DIR}" > /dev/null
 	mkdir -p ./etc ./lib/systemd ./sbin ./var
-	ln -sf  ./usr/lib/systemd/systemd ./init
-	ln -sf  ../../init ./lib/systemd/systemd
-	ln -sf  ../init ./sbin/init
+	ln -sf  ../lib/systemd/systemd ./sbin/init
 	# Kata sytemd unit file
 	mkdir -p ./etc/systemd/system/basic.target.wants/
 	ln -sf /usr/lib/systemd/system/kata-containers.target ./etc/systemd/system/basic.target.wants/kata-containers.target
