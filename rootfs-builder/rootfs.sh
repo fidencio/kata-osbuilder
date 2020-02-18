@@ -584,7 +584,13 @@ EOT
 			popd
 		fi
 	else
+		AGENT_SOURCE_DIR=$(dirname "${AGENT_SOURCE_BIN}")
+		ROOTFS_SYSTEMD_DIR="${ROOTFS_DIR}"/usr/lib/systemd/system
+		mkdir -p "${AGENT_DIR}"
+		mkdir -p "${ROOTFS_SYSTEMD_DIR}"
 		cp ${AGENT_SOURCE_BIN} ${AGENT_DEST}
+		cp "${AGENT_SOURCE_DIR}"/kata-agent.service "${ROOTFS_SYSTEMD_DIR}"
+		cp "${AGENT_SOURCE_DIR}"/kata-containers.target "${ROOTFS_SYSTEMD_DIR}"
 		OK "cp ${AGENT_SOURCE_BIN} ${AGENT_DEST}"
 	fi
 
